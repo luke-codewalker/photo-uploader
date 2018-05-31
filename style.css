@@ -1,0 +1,125 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.upload {
+    --size: 600px;
+    --cutout-size: 300px;
+    --cutout-position: calc(var(--size)/2 - var(--cutout-size)/ 2);
+    --img-width: 0;
+    --img-height: 0;
+    --movable-top:  calc((var(--img-height)/2 - var(--cutout-size)/ 2) * -1);
+    --movable-left: calc((var(--img-width)/2 - var(--cutout-size)/ 2) * -1);
+
+    width: 600px;
+    margin: auto;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+}
+
+.preview {
+    width: var(--size);
+    height: var(--size);
+    position: relative;
+    overflow: hidden;
+}
+
+.full-img-container{
+    position: absolute;
+    top: var(--cutout-position);
+    left: var(--cutout-position);
+    width: var(--cutout-size);
+    height: var(--cutout-size);
+    opacity: 0.5;
+}
+
+.mask-img-container{
+    position: absolute;
+    top: var(--cutout-position);
+    left: var(--cutout-position);
+    width: var(--cutout-size);
+    height: var(--cutout-size);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    overflow: hidden;    
+}
+
+.mask-img-container:empty::before {
+    content: 'Please upload an image';
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    color: #aaa;
+}
+
+.drag-receiver {    
+    position: absolute;
+    top: var(--cutout-position);
+    left: var(--cutout-position);
+    width: var(--cutout-size);
+    height: var(--cutout-size);
+    cursor: move;
+    z-index: 1;
+}
+
+.movable {
+    position: absolute;
+    top: var(--movable-top);
+    left: var(--movable-left);
+}
+
+.movable.fixed-width {
+    min-width: var(--cutout-size);
+    height: auto;
+}
+
+.movable.fixed-height {
+    min-height: var(--cutout-size);
+    width: auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-distribute {
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#cut {
+    background-color: #333;
+}
+
+.section {
+    margin: 4rem auto;
+    width: 60vw;
+    min-width: 800px;
+}
+
+.description {
+    margin-right: 2rem;
+}
+
+.warning {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: calc(100% - 20px);
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 0;
+    text-align: center;
+    z-index: 3;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.inactive {
+    opacity: 0;
+}
